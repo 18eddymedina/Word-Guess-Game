@@ -2,7 +2,7 @@
 // Replace each ??? with what you think its associated
     // function call will log to the console, or return.
     var word;
-    var words = ["phone", "computer", "spanish", "water", "chocolate", "english", "weather", "basketball", "chair", "table", "bedroom"];
+    var words = ["overwhelmed","hungover","frazzeled","sleepy","defeated","homeword","stress", "procrastinate", "api", "javascript", "traffic", "death", "computer", "bob", "code", "bootstrap", "jquery", "html","css", "vscode","crying"];
     var guesses=[];
     var number= words.length;
     var sizeofWord;
@@ -11,7 +11,8 @@
     var alreadyGuessed=false;
     var userGuess;
     var win=0;
-    number=Math.floor(Math.random()*number);
+    var win1=false;
+    number=Math.floor(Math.random()*21);
  
    word=words[number];
    sizeofWord=word.length;
@@ -21,11 +22,46 @@ for(x=0; x<sizeofWord;x++){
     array.push('_');
 
 }
-document.getElementById("word").innerHTML = array;
+document.getElementById("word").innerHTML ="";
+
+for(var i=0;i<sizeofWord;i++){
+    document.getElementById("word").innerHTML +=array[i];
+    document.getElementById("word").innerHTML +=" ";
+
+ }
 
 
 document.onkeydown = function(event) {
-    document.getElementById("word").innerHTML = array;
+
+    document.getElementById("win").innerHTML = "";
+    document.getElementById("start").innerHTML = "";
+    if(win1==true){
+            array=[];
+        number=Math.floor(Math.random()*words.length);
+ 
+        word=words[number];
+        sizeofWord=word.length;
+     // console.log(sizeofWord);
+     
+     for(x=0; x<sizeofWord;x++){
+         array.push('_');
+     
+     }
+     document.getElementById("word").innerHTML ="";
+     for(var i=0;i<sizeofWord;i++){
+        document.getElementById("word").innerHTML +=array[i];
+        document.getElementById("word").innerHTML +=" ";
+
+     }
+     guesses=[];
+     win1=false;
+    }
+    document.getElementById("word").innerHTML ="";
+    for(var i=0;i<sizeofWord;i++){
+        document.getElementById("word").innerHTML +=array[i];
+        document.getElementById("word").innerHTML +=" ";
+
+     }
     userGuess = event.key;
     if(event.keyCode<=64 || event.keyCode>=91){
         alert("Please enter a letter :3");
@@ -53,24 +89,35 @@ else{
              for(x=0;x<sizeofWord;x++){
                 if(word[x]===userGuess){
                        array[x]=userGuess;
-                       document.getElementById("word").innerHTML = array;
+                       document.getElementById("word").innerHTML = "";
                       winword=array.join();
+
+                    for(var i=0;i<sizeofWord;i++){
+                       document.getElementById("word").innerHTML +=array[i];
+                       document.getElementById("word").innerHTML +=" ";
+
+                    }
+                                                
                  
                    }
 
              }
+
+
+
     winword=array.join();
-         for(x=0;x<sizeofWord;x++){
-                 if(word[x]==array[x]){
-                     win=win+1;
-                 }
-                 if(win==sizeofWord){
-                   document.getElementById("guess").innerHTML = guesses;
-                     alert("You Win!!!")
-                 }
-                    
-                   }
-    win=0;
+    for(x=0;x<sizeofWord;x++){
+        if(word[x]==array[x]){
+            win=win+1;
+        }
+        if(win==sizeofWord){
+            document.getElementById("guess").innerHTML = guesses;
+            document.getElementById("win").innerHTML = "YOU WIN!!!!!!!!";
+            document.getElementById("start").innerHTML = "Press another button to start again :)";
+            win1=true;
+        }
+          }
+          win=0;
     document.getElementById("guess").innerHTML = guesses;
 
     }
