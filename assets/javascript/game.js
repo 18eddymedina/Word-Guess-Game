@@ -12,6 +12,8 @@
     var userGuess;
     var win=0;
     var win1=false;
+    var left=10;
+    var correct=false;
     number=Math.floor(Math.random()*21);
  
    word=words[number];
@@ -30,11 +32,12 @@ for(var i=0;i<sizeofWord;i++){
 
  }
 
-
+ document.getElementById("left").innerHTML =left;
 document.onkeydown = function(event) {
 
     document.getElementById("win").innerHTML = "";
     document.getElementById("start").innerHTML = "";
+ 
     if(win1==true){
             array=[];
         number=Math.floor(Math.random()*words.length);
@@ -53,6 +56,10 @@ document.onkeydown = function(event) {
         document.getElementById("word").innerHTML +=" ";
 
      }
+    left=10;
+    document.getElementById("left").innerHTML =left;
+
+
      guesses=[];
      win1=false;
     }
@@ -84,13 +91,14 @@ if(alreadyGuessed==true){
 }
 
 else{
+  
     guesses.push(userGuess);
 
              for(x=0;x<sizeofWord;x++){
                 if(word[x]===userGuess){
+                        correct=true;
                        array[x]=userGuess;
                        document.getElementById("word").innerHTML = "";
-                      winword=array.join();
 
                     for(var i=0;i<sizeofWord;i++){
                        document.getElementById("word").innerHTML +=array[i];
@@ -119,6 +127,24 @@ else{
           }
           win=0;
     document.getElementById("guess").innerHTML = guesses;
+
+    if(correct==true){
+        correct=false;
+    }
+    else{
+    left--;
+
+}
+    if(left==0&&win1==false){
+        alert("Out of guesses");
+        win1=true;
+
+    }
+    else{
+        document.getElementById("left").innerHTML =left;
+    }
+  
+
 
     }
 }
