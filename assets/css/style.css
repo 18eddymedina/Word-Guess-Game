@@ -1,0 +1,14 @@
+.game1{
+    background-image: url("../images/two.jpg");
+    background-color: #cccccc;
+  height: 600px;
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: right;
+  margin-top:-10px;
+  position: top;
+  
+
+
+}
